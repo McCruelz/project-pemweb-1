@@ -43,6 +43,14 @@
         font-size: 20px;
     }
 
+    .border-custom {
+        width: 130px;
+        height: 70px;
+        margin: 0 auto;
+        background-color: rgb(129, 129, 129);
+        margin-bottom: 20px;
+    }
+
     .custom-height {
         height: 90px;
     }
@@ -75,5 +83,3 @@
         width: 90%;
         margin: auto;
     }
-
-    
