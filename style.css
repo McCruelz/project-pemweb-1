@@ -43,4 +43,37 @@
         font-size: 20px;
     }
 
+    .custom-height {
+        height: 90px;
+    }
+    
+    .border-item {
+        width: 200px;
+        height: 170px;
+        background-color: rgb(191, 187, 187);
+        margin-bottom: 20px;
+        border-radius:5px;
+    }
+    
+    .border-label{
+        width: 150px;
+        height: 30px;
+        background-color: rgb(191, 187, 187);
+        border-radius:5px;
+        
+    }
+    
+    .border-cek{
+        width: 150px; 
+        height: 150px;
+        border: 2px solid;
+        font-size: 90px;
+    }
+    
+    .custom-small {
+        max-width: 350px;
+        width: 90%;
+        margin: auto;
+    }
+
     
