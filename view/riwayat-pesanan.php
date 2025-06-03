@@ -60,7 +60,6 @@
             </div>
         </div>
 
-         <!-- Popup Hapus Pesanan -->
          <div id="hapusPopup" class="fixed bottom-0 left-0 w-full transform translate-y-full transition-transform duration-300 z-50">
             <div class="bg-white rounded-t-lg p-6 max-w-[480px] mx-auto">
                 <div class="flex items-center justify-center mb-4">
@@ -78,7 +77,6 @@
             </div>
         </div>
 
-        <!-- Popup Notifikasi -->
         <div id="notifikasiPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center">
             <div class="bg-white rounded-lg p-6 w-11/12 max-w-md">
                 <div class="flex items-center justify-center mb-4">
@@ -92,13 +90,11 @@
             </div>
         </div>
 
-        <!-- Overlay -->
         <div id="overlay" class="hidden absolute inset-0 bg-black bg-opacity-50 z-40"></div>
         <?php include 'view/templates/sidebar.php'; ?>
     </div>
 
     <script>
-        // Elemen DOM yang sering digunakan
         var elements = {
             hapusPopup: document.getElementById('hapusPopup'),
             notifikasiPopup: document.getElementById('notifikasiPopup'),
@@ -108,9 +104,8 @@
             konfirmasiBtn: document.getElementById('konfirmasiBtn')
         };
 
-        // Fungsi untuk menampilkan/menyembunyikan popup hapus
         function toggleHapusPopup(show) {
-            show = show !== false; // Default true jika tidak diberikan
+            show = show !== false; 
             
             if (show) {
                 elements.hapusPopup.classList.remove('translate-y-full');
@@ -123,7 +118,6 @@
             }
         }
 
-        // Toggle sidebar
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             var sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -134,22 +128,17 @@
             sidebarOverlay.classList.toggle('hidden');
         }
 
-        // Fungsi untuk menampilkan notifikasi dan redirect
         function hapusPesanan() {
-            // Sembunyikan popup konfirmasi
             toggleHapusPopup(false);
             
-            // Tampilkan notifikasi
             elements.notifikasiPopup.classList.remove('hidden');
             elements.notifikasiPopup.classList.add('flex');
             
-            // Redirect setelah delay
             setTimeout(function() {
                 window.location.href = 'index.php?c=Admin&m=riwayat';
             }, 1500);
         }
 
-        // Event listeners
         elements.hapusBtn.addEventListener('click', function() {
             toggleHapusPopup(true);
         });
@@ -162,7 +151,6 @@
             hapusPesanan();
         });
         
-        // Event listener untuk overlay
         elements.overlay.addEventListener('click', function() {
             toggleHapusPopup(false);
         });
