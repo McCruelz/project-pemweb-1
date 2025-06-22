@@ -133,9 +133,9 @@ class Admin extends Controller
         $model = $this->loadModel('AdminModel');
         $result = $model -> updateStock($stock, $item_id);
         if ($result) {
-            header("location: index.php?c=AppController&m=detail&item_id=$item_id&updated=1");
+            header("location: index.php?c=Admin&m=detail&item_id=$item_id&updated=1");
         } else {
-            header("location: index.php?c=AppController&m=detail&item_id=$item_id&error=0");
+            header("location: index.php?c=Admin&m=detail&item_id=$item_id&error=0");
         }
         exit;
     }
