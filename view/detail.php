@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container m-6">
+<div class="m-6">
     <div class="flex items-center mb-8 p-1">
         <div class="text-2xl mr-4 cursor-pointer" onclick="location.href='?c=Admin&m=list&category_id=<?= $items['category_id']?>'">&#10094;</div>
         <div class="flex-grow text-center text-lg font-bold"><?= $items['name'] ?></div>

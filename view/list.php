@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container m-6">
+<div class="m-6">
     <div class="flex items-center mb-8 p-1">
-        <div class="text-2xl mr-4 cursor-pointer" onclick="location.href='?c=Adminr&m=kategori'">&#10094;</div>
+        <div class="text-2xl mr-4 cursor-pointer" onclick="location.href='?c=Admin&m=kategori'">&#10094;</div>
         <div class="flex-grow text-center text-lg font-bold">Item</div>
         <div class="text-xl cursor-pointer" onclick="toggleSidebar()">&#9776;</div>
     </div>
