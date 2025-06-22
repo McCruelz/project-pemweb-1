@@ -1,5 +1,5 @@
 <?php
-$controller = $_GET['c'] ?? 'AppController';
+$controller = $_GET['c'] ?? 'Home';
 $method     = $_GET['m'] ?? 'login';
 
 require_once "controller/Controller.class.php";
