@@ -99,6 +99,54 @@ class Admin extends Controller
         }
     }
 
+    function kategori() {
+        $model = $this->loadModel('AdminModel');
+        $data = $model->getAllCategories();
+        $this->loadView('kategori.php', ['categories' => $data]);
+    }
+
+    function list() {
+        $category_id = $_GET['category_id'] ?? null;
+        $model = $this->loadModel('AdminModel');
+        $data = $model->getItems($category_id);
+        $categories = $model->getAllCategories();
+        $this->loadView('list.php', ['items' => $data, 'categories' => $categories]);
+    }
+
+    function detail() {
+        $item_id = $_GET['item_id'] ?? null;
+        $model = $this->loadModel('AdminModel');
+        $items = $model->getDetailItem($item_id);
+        $this->loadView('detail.php', ['items' => $items]);
+    }
+
+    function edit() {
+        $item_id = $_GET['item_id'] ?? null;
+        $model = $this->loadModel('AdminModel');
+        $items = $model->getDetailItem($item_id);
+        $this->loadView('edit.php', ['items' => $items]);
+    }
+
+    function update() {
+        $item_id = $_POST['item_id'];
+        $stock = $_POST['stock'];
+        $model = $this->loadModel('AdminModel');
+        $result = $model -> updateStock($stock, $item_id);
+        if ($result) {
+            header("location: index.php?c=AppController&m=detail&item_id=$item_id&updated=1");
+        } else {
+            header("location: index.php?c=AppController&m=detail&item_id=$item_id&error=0");
+        }
+        exit;
+    }
+
+    function searchKategori() {
+        $keyword = $_GET['search_kategori'] ?? '';
+        $model = $this->loadModel('AdminModel');
+        $data = $model->searchKategori($keyword);
+        $this->loadView('kategori.php', ['categories' => $data]);
+    }
+
     public function logout() {
         session_unset();
         

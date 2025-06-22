@@ -123,6 +123,36 @@ class AdminModel extends Model
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    function getAllCategories() {
+        $sql = "SELECT * FROM categories";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    function getItems($category_id) {
+        $sql = "SELECT * FROM items where category_id = '$category_id'";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    function getDetailItem($item_id) {
+        $sql = "SELECT * FROM items where item_id = '$item_id'";
+        $result = $this->db->query($sql);
+        return $result->fetch_assoc();
+    }
+    
+    function updateStock($stock, $item_id) {
+        $sql = "UPDATE items SET stock = '$stock' " 
+        . "WHERE item_id = '$item_id'";
+        return $this->db->query($sql);
+    }
+
+    function searchKategori($keyword) {
+        $sql = "SELECT * FROM categories WHERE name LIKE '%$keyword%'";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     function getRiwayatPesananById($id)
     {
         return $this->getPesananById($id);

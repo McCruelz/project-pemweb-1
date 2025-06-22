@@ -4,50 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Kategori Menu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <div class="container">
-        <nav class="navbar">
-            <img src="banner.png">
-            <div class="container-fluid justify-content-end">
-                <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarToggleExternalContent"
-                    aria-controls="navbarToggleExternalContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
+<div class="m-6">
+    <div class="flex items-center mb-8 p-1">
+        <div class="flex-grow text-center text-lg font-bold">Kategori</div>
+        <div class="text-xl cursor-pointer" onclick="toggleSidebar()">&#9776;</div>
+    </div>
+
+    <form class="flex flex-row gap-3" role="search" method="GET" action="index.php">
+        <input class="basis-3/4 px-3 py-2 border border-gray-300 rounded-md" type="search" name="search_kategori" placeholder="Search" aria-label="Search">
+        <input type="hidden" name="c" value="Admin">
+        <input type="hidden" name="m" value="searchKategori">
+        <button class="custom basis-1/4 px-4 py-2 rounded-md" type="submit">Search</button>
+    </form>
+    
+    <div class="mt-8">
+        <div class="grid gap-4">
+        <?php foreach ($categories as $c): ?>
+            <button
+            class="relative h-24 rounded-lg overflow-hidden text-white font-bold"
+            style="background-image: url('<?= $c['image'] ?>'); background-size: cover; background-position: center;"
+            onclick="location.href='?c=Admin&m=list&category_id=<?= $c['category_id'] ?>'">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+            <span><?=($c['name']) ?></span>
             </div>
-        </nav>              
-        <nav class="navbar">
-            <div class="container-fluid">
-              <form class="d-flex w-100 gap-2" role="search">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-              </form>
-            </div>
-          </nav>
-        <div class="m-3">
-        <p class="mt-4 fw-bold">Kategori</p>
-        <div class="d-grid gap-4">
-            <button class="btn btn-secondary custom-height" onclick="location.href='?c=AppController&m=list'">
-                <img src="icon.png">
-                Kategori 1
             </button>
-            <button class="btn btn-secondary custom-height" onclick="location.href='?c=AppController&m=list'">
-                <img src="icon.png">
-                Kategori 2
-            </button>
-            <button class="btn btn-secondary custom-height" onclick="location.href='?c=AppController&m=list'">
-                <img src="icon.png">
-                Kategori 3
-            </button>
-        </div>
+        <?php endforeach; ?>
         </div>
     </div>
+</div>
+
+<div id="sidebar" class="absolute top-0 right-0 h-full w-3/4 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+    <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+        <h2 class="text-lg font-bold">Menu</h2>
+        <button class="text-2xl cursor-pointer" onclick="toggleSidebar()">&times;</button>
+    </div>
+    <div class="p-4">
+        <ul>
+            <li class="mb-2">
+                <a href="index.php?c=Admin&m=kategori" class="block py-2 px-4 hover:bg-gray-100 rounded cursor-pointer">Stok Menu</a>
+            </li>
+            <li class="mb-2">
+                <a href="index.php?c=Admin&m=ongoing" class="block py-3 px-4 hover:bg-teal-100 hover:text-teal-800 rounded-lg cursor-pointer text-gray-700 font-medium">Pesanan Ongoing</a>
+            </li>
+            <li class="mb-2">
+                <a href="index.php?c=Admin&m=riwayat" class="block py-3 px-4 hover:bg-teal-100 hover:text-teal-800 rounded-lg cursor-pointer text-gray-700 font-medium">Riwayat Pesanan</a>
+            </li>
+            <li>
+                <a href="index.php?c=Admin&m=logout" class="block py-3 px-4 hover:bg-red-100 hover:text-red-700 rounded-lg cursor-pointer text-gray-700 font-medium border border-red-200">Log Out</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="sidebarOverlay" class="hidden absolute inset-0 bg-black bg-opacity-50 z-40" onclick="toggleSidebar()"></div>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        sidebar.classList.toggle('translate-x-full');
+        sidebar.classList.toggle('translate-x-0');
+
+        sidebarOverlay.classList.toggle('hidden');
+    }
+</script>
 </body>
 </html>
